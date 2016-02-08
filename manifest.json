@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "The New York Public Library - Digital Collections",
+  "description": "A beautiful item from The New York Public Library's Digital Collections, each time you open a new tab.",
+  "short_name": "NYPL Digital Collections",
+  "version": "0.0.1",
+  "incognito": "split",
+  "offline_enabled": false,
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "icons": {
+    "128": "nypl-128.png"
+  },
+  "web_accessible_resources": [
+    "index.html"
+  ],
+  "content_security_policy": "script-src 'self' https://wwww.nypl.org/*; object-src 'self'",
+  "permissions": [
+    "<all_urls>",
+    "tabs"
+  ]
+}
