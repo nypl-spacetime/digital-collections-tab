@@ -59,8 +59,8 @@ const setHeader = (item, collections, mods) => {
   headerLink.href = `http://digitalcollections.nypl.org/items/${item.uuid}`
   footerLink.href = `${appUrl}${item.uuid}`
 
-  document.getElementById('header').style.display = 'inherit'
-  document.getElementById('footer').style.display = 'inherit'
+  document.getElementById('header').className = ''
+  document.getElementById('footer').className = ''
 }
 
 callAPI('items/random')

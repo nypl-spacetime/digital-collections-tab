@@ -40,10 +40,21 @@ header {
 
 footer {
   position: absolute;
-
-  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
   bottom: 0;
   right: 0;
+}
+
+footer img {
+  width: 100px;
+  filter: grayscale(100%);
+}
+
+footer:hover img {
+  filter: none;
 }
 
 header h1 {
