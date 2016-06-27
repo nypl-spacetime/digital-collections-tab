@@ -10,7 +10,7 @@
     "newtab": "index.html"
   },
   "icons": {
-    "128": "nypl-128.png"
+    "128": "images/nypl-128.png"
   },
   "web_accessible_resources": [
     "index.html"

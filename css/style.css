@@ -13,6 +13,10 @@ body, a, a:visited {
   color: white;
 }
 
+.hidden {
+  display: none;
+}
+
 article {
   padding: 10px;
   box-sizing: border-box;
@@ -34,13 +38,21 @@ header {
   line-height: 30px;
 }
 
+footer {
+  position: absolute;
+
+  padding: 10px;
+  bottom: 0;
+  right: 0;
+}
+
 header h1 {
   font-size: 25px;
   line-height: 39px;
   margin: 0;
 }
 
-header .header-text {
+.header-text {
   background-color: rgba(0,0,0,.5);
   display: inline;
   padding: 5px 7px;
@@ -49,13 +61,10 @@ header .header-text {
   line-height: 27px;
 }
 
-header .header-text {
-  margin: 0;
-  width: 100%;
-  /*display: flex;*/
-  /*flex-direction: column;*/
+footer a,
+footer a:visited {
+  color: #d0343a;
 }
-
 
 #image {
   display: block;

@@ -3,7 +3,7 @@ var appUrl = 'http://localhost:3000/#/'
 
 // TODO: show loading text + lion?
 // TODO: add 'click here to geotag/open in surveyor button'
-// TODO: load MODS, add title + metadata
+// TODO: load MODS?
 
 const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {
@@ -45,17 +45,22 @@ const setImage = (item) => {
 }
 
 const setHeader = (item, collections, mods) => {
-  var titleElement = document.getElementById('header-title')
-  var collectionElement = document.getElementById('header-collection')
-  var linkElement = document.getElementById('header-link')
+  var headerTitle = document.getElementById('header-title')
+  var headerCollection = document.getElementById('header-collection')
+  var headerLink = document.getElementById('header-link')
+  var footerLink = document.getElementById('footer-link')
 
-  titleElement.innerHTML = item.title
+  headerTitle.innerHTML = item.title
 
   var collection = collections.filter((collection) => collection.uuid === item.collection)[0]
-  collectionElement.href = `http://digitalcollections.nypl.org/items/${item.collection}`
-  collectionElement.innerHTML = collection ? collection.title : ''
+  headerCollection.href = `http://digitalcollections.nypl.org/items/${item.collection}`
+  headerCollection.innerHTML = collection ? collection.title : ''
 
-  linkElement.href = `http://digitalcollections.nypl.org/items/${item.uuid}`
+  headerLink.href = `http://digitalcollections.nypl.org/items/${item.uuid}`
+  footerLink.href = `${appUrl}${item.uuid}`
+
+  document.getElementById('header').style.display = 'inherit'
+  document.getElementById('footer').style.display = 'inherit'
 }
 
 callAPI('items/random')
