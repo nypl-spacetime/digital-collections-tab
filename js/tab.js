@@ -23,19 +23,6 @@ const callAPI = (path) => fetch(`${apiUrl}${path}`, {
   .then(checkStatus)
   .then(parseJSON)
 
-const loadItem = (callback) => {
-  fetch(`${apiUrl}items/random`, {
-    credentials: 'include'
-  })
-  .then(checkStatus)
-  .then(parseJSON)
-  .then(function(json) {
-    callback(null, json)
-  }).catch(function(error) {
-    callback(error)
-  })
-}
-
 const setImage = (item) => {
   var image = document.getElementById('image')
   image.style.backgroundImage = `url(${item.image_link})`
