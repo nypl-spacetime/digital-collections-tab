@@ -1,5 +1,5 @@
-var apiUrl = 'http://where-api.dev/'
-var appUrl = 'http://localhost:3000/#/'
+var apiUrl = 'http://spacetimesurveyor.heroku.com'
+var appUrl = 'http://spacetime.nypl.org/surveyor/'
 
 // TODO: show loading text + lion?
 // TODO: add 'click here to geotag/open in surveyor button'
