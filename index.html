@@ -6,34 +6,41 @@
     <title>New Tab</title>
     <link rel='shortcut icon' type='image/png' href='images/nypl-48.png' />
     <meta name="viewport"content="width=device-width,initial-scale=1" />
+    <script src="js/promise.min.js"></script>
+    <script src="js/fetch.js"></script>
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/fonts.css" />
   </head>
   <body>
     <article>
-      <header class="hidden" id="header">
+      <header class="hidden">
         <h1>
-          <span id="header-title" class="header-text">
+          <span id="header-title">
           </span>
         </h1>
+        <div class="hidden">
+          <span>From <a id="header-collection" href=""></a></span>
+        </div>
         <div>
-          <span class="header-text">
-            <span>From </span>
-            <a id="header-collection" href="">
-            </a>
+          <span>View item in <a id="header-link" href="">Digital Collections</a></span>
+        </div>
+      </header>
+      <div id="message-container">
+        <span id="message">Loading...</span>
+      </div>
+      <div id="nypl-container">
+        <a id="nypl-link" href="https://nypl.org"><img id="nypl" alt="The New York Public Library" src="../images/nypl-no-background.svg" /></a>
+      </div>
+      <div id="image-container">
+        <a id="image-link">
+          <img class="hidden" id="image" />
+        </a>
+      </div>
+      <footer class="hidden">
+        <div>
+          <span>
+            Know where this is? <a id="footer-link">Help us locate this image on the map!</a>
           </span>
         </div>
-        <span class="header-text" >
-          <a id="header-link" href="">Open item in Digital Collections</a>
-        </span>
-      </header>
-      <a id="image">
-      </a>
-      <footer class="hidden" id="footer">
-        <span class="header-text">
-          Know where this is? <a id="footer-link">Help up locate this image on the map!</a>
-        </span>
-        <img src="images/world-map-emoji.png" />
       </footer>
     </article>
     <script src="js/tab.js"></script>

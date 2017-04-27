@@ -1,11 +1,12 @@
-var apiUrl = 'http://spacetimesurveyor.heroku.com'
-var appUrl = 'http://spacetime.nypl.org/surveyor/'
+var API_URL = 'http://brick-by-brick.dev/'
+var APP_URL = 'http://localhost:3224/#/'
+var ORGANIZATION = 'nypl'
 
-// TODO: show loading text + lion?
+// var APP_URL = 'http://spacetime.nypl.org/surveyor/#/'
+
 // TODO: add 'click here to geotag/open in surveyor button'
-// TODO: load MODS?
 
-const checkStatus = (response) => {
+function checkStatus (response) {
   if (response.status >= 200 && response.status < 300) {
     return response
   } else {
@@ -15,47 +16,57 @@ const checkStatus = (response) => {
   }
 }
 
-const parseJSON = (response) => response.json()
+function parseJSON (response) {
+  return response.json()
+}
 
-const callAPI = (path) => fetch(`${apiUrl}${path}`, {
+function callAPI (path) {
+  return fetch(API_URL + path, {
     credentials: 'include'
   })
   .then(checkStatus)
   .then(parseJSON)
+}
 
-const setImage = (item) => {
+function setImage (item) {
   var image = document.getElementById('image')
-  image.style.backgroundImage = `url(${item.image_link})`
-  image.href = `${appUrl}${item.uuid}`
+  var imageLink = document.getElementById('image-link')
+
+  var imageUrls = item.data.image_urls
+
+  // TODO: imageUrls[0] is always 760px wide,
+  //   but if bigger sizes are available, they sometimes
+  //   are rotated and include ruler and color strip
+  image.src = imageUrls[0].url
+  image.className = ''
+  image.alt = item.data.title
+
+  imageLink.href = APP_URL + item.id
 
   return item
 }
 
-const setHeader = (item, collections, mods) => {
+function setHeader (item) {
   var headerTitle = document.getElementById('header-title')
   var headerCollection = document.getElementById('header-collection')
   var headerLink = document.getElementById('header-link')
   var footerLink = document.getElementById('footer-link')
 
-  headerTitle.innerHTML = item.title
+  headerTitle.innerHTML = item.data.title
+  headerCollection.href = 'http://digitalcollections.nypl.org/items/' + item.collection.id
+  headerCollection.innerHTML = item.collection.title
 
-  var collection = collections.filter((collection) => collection.uuid === item.collection)[0]
-  headerCollection.href = `http://digitalcollections.nypl.org/items/${item.collection}`
-  headerCollection.innerHTML = collection ? collection.title : ''
+  headerLink.href = 'http://digitalcollections.nypl.org/items/' + item.id
+  footerLink.href = APP_URL + item.id
 
-  headerLink.href = `http://digitalcollections.nypl.org/items/${item.uuid}`
-  footerLink.href = `${appUrl}${item.uuid}`
-
-  document.getElementById('header').className = ''
-  document.getElementById('footer').className = ''
+  document.getElementsByTagName('header')[0].className = ''
+  document.getElementsByTagName('footer')[0].className = ''
 }
 
-callAPI('items/random')
+callAPI('tasks/geotag-photo/items/random?organization=' + ORGANIZATION)
   .then(setImage)
-  .then((item) => Promise.all([
-      item,
-      callAPI('collections'),
-      // callAPI(`items/${item.uuid}/mods`)
-  ]))
-  .then((results) => setHeader.apply(null, results))
-  .catch((err) => console.error(err.message))
+  .then(setHeader)
+  .catch((err) => {
+    var message = document.getElementById('message')
+    message.innerHTML = 'Failed to load image'
+  })
