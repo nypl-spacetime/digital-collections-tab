@@ -2,9 +2,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 13px;
   line-height: 1.65;
-}
-
-body, article {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -22,6 +19,15 @@ body, a, a:visited {
   display: none;
 }
 
+.fade {
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.fade-in {
+  opacity: 1;
+}
+
 article {
   padding: 10px;
   box-sizing: border-box;
@@ -34,12 +40,13 @@ header {
   min-width: 50%;
   font-weight: lighter;
   z-index: 1;
+  padding: 10px;
 }
 
 footer {
   position: absolute;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 10px;
   bottom: 0;
   right: 0;
 }
@@ -51,14 +58,31 @@ footer {
   bottom: 0;
   width: 60px;
   height: 60px;
+  z-index: 1;
 }
 
 #nypl-link {
   background-color: transparent;
 }
 
-#nypl {
-  opacity: .8;
+button {
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 2rem;
+  display: inline-block;
+  margin: 0.6rem;
+  padding: 0.5rem 1.3rem;
+  text-decoration: none;
+  color: #fefefe;
+  background-color: #d0343a;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #fefefe;
+  transition: border-color 0.3s;
+}
+
+button:hover {
+  border-color: #d0343a;
 }
 
 header h1 {
@@ -67,9 +91,8 @@ header h1 {
   font-weight: 200;
 }
 
-header > * > *,
-footer > * > * {
-  background-color: rgba(30, 30, 30, 0.8);
+header > * > * {
+  background-color: rgba(30, 30, 30, 0.9);
   display: inline;
   padding: 7px 11px;
   line-height: 26px;
@@ -105,4 +128,149 @@ footer a:visited {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#surveyor-link {
+  display: flex;
+  align-items: center;
+}
+
+#surveyor-link:hover #marker {
+  display: block;
+}
+
+#question {
+  width: 200px;
+  margin-right: 10px;
+}
+
+#nyc-animation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#shadow {
+  position: absolute;
+  bottom: 5px;
+  width: 40px;
+  z-index: 2;
+  animation: animation-grow 0.5s forwards ease-out;
+}
+
+#new-york-city {
+  position: relative;
+  height: 60px;
+  z-index: 3;
+  animation: animation-bounce 0.5s forwards ease-out;
+}
+
+#marker {
+  display: none;
+  position: absolute;
+  bottom: 40px;
+  margin-left: -4px;
+  width: 30px;
+  z-index: 4;
+  animation: animation-bounce 0.4s forwards ease-out;
+}
+
+#modal {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+
+  overflow: hidden;
+  margin: 0;
+  padding: 20px;
+  border: none;
+}
+
+#modal article {
+  border-radius: 3px;
+  box-shadow: 0 0 5px black;
+  padding: 20px;
+  box-sizing: border-box;
+  height: 100%;
+  width: 800px;
+  max-width: calc(100% - 20px);
+  overflow-y: auto;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  font-size: 1.2rem;
+}
+
+#modal article, button {
+  font-size: 1.2rem;
+}
+
+#modal article,
+#modal article a,
+#modal article a:visited {
+  color: #333;
+}
+
+.two-columns {
+  display: flex;
+}
+
+.two-columns > * {
+  width: 50%;
+}
+
+.two-columns > *:first-child {
+  padding-right: 5px;
+}
+
+.two-columns > *:last-child {
+  padding-left: 5px;
+}
+
+#modal-title {
+  margin-top: 0;
+}
+
+#modal-image {
+  width: 100%;
+}
+
+#modal #metadata p {
+  margin: 0;
+}
+
+#back-button {
+  margin: 10px auto;
+  display: block;
+}
+
+@keyframes animation-bounce {
+  0% {
+    transform: scale(0.6, 1.2) translateY(-500px);
+  }
+  40% {
+    transform: scale(1.2, 0.7) translateY(20px);
+  }
+  60% {
+    transform: scale(0.9, 1.1) translateY(-25px);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+
+@keyframes animation-grow {
+  0% {
+    transform: scale(0);
+  }
+  20%, 100% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(0.5);
+  }
 }

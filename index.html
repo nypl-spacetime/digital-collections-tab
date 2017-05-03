@@ -1,48 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8' />
-    <title>New Tab</title>
-    <link rel='shortcut icon' type='image/png' href='images/nypl-48.png' />
-    <meta name="viewport"content="width=device-width,initial-scale=1" />
-    <script src="js/promise.min.js"></script>
-    <script src="js/fetch.js"></script>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
+<head>
+  <meta charset='utf-8' />
+  <title>New Tab</title>
+  <link rel='shortcut icon' type='image/png' href='images/nypl-48.png' />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script src="js/promise.min.js"></script>
+  <script src="js/fetch.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="hidden">
+    <h1>
+    <span id="header-title">
+    </span>
+    </h1>
+    <div>
+      <span>
+      Show <a id="more-information" href="#">more information</a>, or view this item in <a id="header-link" href="">Digital Collections</a>
+    </span>
+    </div>
+  </header>
+  <article>
+    <div id="message-container">
+      <span id="message">Loading…</span>
+    </div>
+    <div id="nypl-container">
+      <a id="nypl-link" href="https://nypl.org"><img id="nypl" alt="The New York Public Library" src="../images/nypl.svg" /></a>
+    </div>
+    <div id="image-container">
+      <img class="hidden fade" id="image" />
+    </div>
+  </article>
+  <footer class="hidden">
+    <div>
+      <a id="surveyor-link">
+        <img id="question" src="../images/question.svg" />
+        <div id="nyc-animation">
+          <img id="shadow" src="../images/shadow.svg" />
+          <img id="new-york-city" src="../images/new-york-city.svg" />
+          <img id="marker" src="../images/marker.svg" />
+        </div>
+      </a>
+    </div>
+  </footer>
+  <div id="modal" class="hidden fade">
     <article>
-      <header class="hidden">
-        <h1>
-          <span id="header-title">
-          </span>
-        </h1>
-        <div class="hidden">
-          <span>From <a id="header-collection" href=""></a></span>
+      <h2 id="modal-title"></h2>
+      <div class="two-columns">
+        <div id="metadata">
+          <p>From:
+            <a id="modal-collection" href=""></a>
+          </p>
+          <p>Location: <span id="modal-location"></span></p>
+          <p>Date: <span id="modal-date"></span></p>
         </div>
         <div>
-          <span>View item in <a id="header-link" href="">Digital Collections</a></span>
+          <a href="" id="modal-digital-collections-link"><img id="modal-image" /></a>
         </div>
-      </header>
-      <div id="message-container">
-        <span id="message">Loading...</span>
       </div>
-      <div id="nypl-container">
-        <a id="nypl-link" href="https://nypl.org"><img id="nypl" alt="The New York Public Library" src="../images/nypl-no-background.svg" /></a>
+      <h3>NYPL Digital Collections Chrome Extension</h3>
+      <p>About!</p>
+      <h3>Surveyor</h3>
+      <p>
+        About Surveyor
+      </p>
+      <p><strong>If you know the location where this photo was taken, <a href="" id="modal-surveyor-link">Surveyor</a>!</strong></p>
+      <h3>Acknowledgements</h3>
+      <p>
+        Surveyor and this Chrome Extension are part of the <a href="http://spacetime.nypl.org/">NYC Space/Time
+      Directory</a>. The goal of this project is to&mdash;through a variety of resources&mdash;unlock the potential of historical maps and provide opportunities to explore urban history across space and time.
+      </p>
+      <p>
+        Major support for the NYC Space/Time Directory is provided by the <a href='http://www.knightfoundation.org/grants/6715'>Knight News Challenge</a>, an initiative of the <a href='http://www.knightfoundation.org/'>John S. and James
+      L. Knight Foundation</a>.
+      </p>
+      <p>
+        <img src="images/knight-foundation.png" alt="Knight Foundation Logo" style="width: 50%; opacity: 0.88;" />
+      </p>
+      <h3>Accessibility</h3>
+      <p>
+        <a href='https://www.nypl.org/'>The New York Public Library</a> strives to ensure that everyone has access to the full range of information, programs, and services that it offers. Our digital teams seek to conform to <a href='https://www.w3.org/TR/WCAG20/'>Web Content Accessibility
+      Guidelines (WCAG) 2.0</a> success criteria of at least Level AA. Even when surpassing these criteria, we realize that we might not meet the needs of all users. As new techniques emerge to address accessibility issues, we are committed to incorporating them into our development processes.
+      </p>
+      <p>
+        Some items in our collections present accessibility challenges. In such cases, we look at using metadata in different ways to improve accessibility. Additionally, as part of our efforts, we actively work on projects that enrich our metadata. As a result, we are increasingly able to provide better experiences with our collections for all users&mdash;regardless of their abilities.
+      </p>
+      <p>
+        If you encounter any accessibility shortfalls when using this Chrome Extension or would like to provide other feedback, please email <a href='mailto:spacetime@nypl.org'>spacetime@nypl.org</a> or TTY Ask NYPL at <a href='tel:2129300020'>212-930-0020</a>.
+      </p>
+      <p>
+        For further information about assistive technologies and accommodations available for people with disabilities at the <a href='https://www.nypl.org/locations/'>research
+      centers and branch libraries</a> of The New York Public Library, please visit <a href='http://nypl.org/accessibility'>nypl.org/accessibility</a> or email <a href='mailto:accessibility@nypl.org'>accessibility@nypl.org</a>.
+      </p>
+      <div>
+        <button id="back-button">Go back to photo!</button>
       </div>
-      <div id="image-container">
-        <a id="image-link">
-          <img class="hidden" id="image" />
-        </a>
-      </div>
-      <footer class="hidden">
-        <div>
-          <span>
-            Know where this is? <a id="footer-link">Help us locate this image on the map!</a>
-          </span>
-        </div>
-      </footer>
     </article>
-    <script src="js/tab.js"></script>
-  </body>
+  </div>
+  <script src="js/tab.js"></script>
+</body>
 </html>
