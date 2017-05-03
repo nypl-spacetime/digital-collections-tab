@@ -245,8 +245,17 @@ footer a:visited {
   width: 100%;
 }
 
-#modal #metadata p {
+#modal #metadata {
   margin: 0;
+}
+
+#modal #metadata td {
+  vertical-align: top;
+}
+
+#modal #metadata tr td:first-child {
+  padding-right: 1em;
+  text-align: right;
 }
 
 #back-button {

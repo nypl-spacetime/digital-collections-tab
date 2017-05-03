@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset='utf-8' />
   <title>New Tab</title>
@@ -36,11 +36,11 @@
   <footer class="hidden">
     <div>
       <a id="surveyor-link">
-        <img id="question" src="images/question.svg" />
+        <img alt="Do you know where this photo was taken?" id="question" src="images/question.svg" />
         <div id="nyc-animation">
-          <img id="shadow" src="images/shadow.svg" />
-          <img id="new-york-city" src="images/new-york-city.svg" />
-          <img id="marker" src="images/marker.svg" />
+          <img role="none" id="shadow" src="images/shadow.svg" />
+          <img role="none" id="new-york-city" src="images/new-york-city.svg" />
+          <img role="none" id="marker" src="images/marker.svg" />
         </div>
       </a>
     </div>
@@ -49,13 +49,24 @@
     <article>
       <h2 id="modal-title"></h2>
       <div class="two-columns">
-        <div id="metadata">
-          <p>From:
-            <a id="modal-collection" href=""></a>
-          </p>
-          <p>Location: <span id="modal-location"></span></p>
-          <p>Date: <span id="modal-date"></span></p>
-        </div>
+        <table id="metadata">
+          <tr>
+            <td>
+              Collection:
+            </td>
+            <td>
+              <a id="modal-collection" href=""></a>
+            </td>
+          </tr>
+          <tr>
+            <td>Location:</td>
+            <td id="modal-location"></td>
+          </tr>
+          <tr>
+            <td>Date:</td>
+            <td id="modal-date"></td>
+          </tr>
+        </table>
         <div>
           <a href="" id="modal-digital-collections-link"><img id="modal-image" /></a>
         </div>
