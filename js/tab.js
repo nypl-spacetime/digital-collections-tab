@@ -1,14 +1,13 @@
-// Development:
-// var API_URL = 'http://brick-by-brick.dev/'
-// var APP_URL = 'http://localhost:3224/#/'
-
 // Production:
 var API_URL = 'http://brick-by-brick.herokuapp.com/'
 var APP_URL = 'http://spacetime.nypl.org/surveyor/#/'
 
+// Development:
+// API_URL = 'http://brick-by-brick.dev/'
+// APP_URL = 'http://localhost:3224/#/'
+
 var ORGANIZATION = 'nypl'
 var MAX_TITLE_LENGTH = 150
-
 
 function checkStatus (response) {
   if (response.status >= 200 && response.status < 300) {
@@ -51,7 +50,7 @@ function imageLoaded () {
 
 function showModal () {
   document.getElementById('modal').classList.remove('hidden')
-  setTimeout(function (){
+  setTimeout(function () {
     document.getElementById('modal').classList.add('fade-in')
   }, 10)
 
@@ -61,13 +60,13 @@ function showModal () {
 function hideModal () {
   document.getElementById('modal').classList.remove('fade-in')
 
-  setTimeout(function (){
+  setTimeout(function () {
     document.getElementById('modal').classList.add('hidden')
   }, 250)
 }
 
 window.addEventListener('keydown', function (event) {
-  if (event.keyCode == 27) {
+  if (event.keyCode === 27) {
     hideModal()
   }
 })
