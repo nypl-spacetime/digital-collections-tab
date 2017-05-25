@@ -176,9 +176,21 @@ function setLoading () {
 function getItem (uuid) {
   setLoading()
 
-  var url = 'tasks/geotag-photo/items/random?organization=' + ORGANIZATION
+  var url = 'tasks/geotag-photo/items/random'
+  var params = {
+    organization: ORGANIZATION,
+    source: 'chrome-tab'
+  }
+
   if (uuid) {
     url = 'organizations/' + ORGANIZATION + '/items/' + uuid
+    delete params.organization
+  }
+
+  if (Object.keys(params).length) {
+    url += '?' + Object.keys(params).map(function (param) {
+      return param + '=' + params[param]
+    }).join('&')
   }
 
   callAPI(url)
