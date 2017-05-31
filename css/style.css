@@ -141,7 +141,8 @@ footer a:visited {
   align-items: center;
 }
 
-#surveyor-link:hover #marker {
+#surveyor-link:hover #marker,
+#surveyor-link:focus #marker {
   display: block;
 }
 
