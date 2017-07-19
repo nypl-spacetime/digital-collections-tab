@@ -1,5 +1,5 @@
 // Production:
-var API_URL = 'http://brick-by-brick.herokuapp.com/'
+var API_URL = 'https://brick-by-brick.herokuapp.com/'
 var APP_URL = 'http://spacetime.nypl.org/surveyor/#/'
 
 // Development:
@@ -36,15 +36,55 @@ function setMessage (message) {
   element.innerHTML = message
 }
 
-function showError (err) {
-  console.error(err)
-  setMessage('Failed to load image')
+function getOfflineItems () {
+  return fetch('offline/offline-items.json')
+    .then(checkStatus)
+    .then(parseJSON)
 }
 
-function imageLoaded () {
+function getOfflineItem () {
+  getOfflineItems()
+    .then(function (items) {
+      var item = items[Math.floor(Math.random() * items.length)]
+      setImage(item, true)
+    })
+}
+
+function getOfflineImage () {
+  getOfflineItems()
+    .then(function (items) {
+      var offlinePhotos = items.filter(function (item) {
+        return item.data.offline_url
+      })
+
+      var item = offlinePhotos[Math.floor(Math.random() * offlinePhotos.length)]
+
+      item.data.image_urls = [{
+        size: 760,
+        url: item.data.offline_url
+      }]
+
+      setImage(item, true, true)
+    })
+}
+
+function brickByBrickError (err) {
+  getOfflineItem()
+}
+
+function imageError (err, offlineImage) {
+  if (offlineImage) {
+    setMessage('Failed to load image')
+  } else {
+    getOfflineImage()
+  }
+}
+
+function imageLoaded (item, offline) {
   setMessage('')
-  document.getElementsByTagName('header')[0].classList.remove('hidden')
-  document.getElementsByTagName('footer')[0].classList.remove('hidden')
+  window.setTimeout(function () {
+    setMetadata(item, offline)
+  }, 250)
   document.getElementById('image').classList.add('fade-in')
 }
 
@@ -78,7 +118,7 @@ document.getElementById('modal').addEventListener('click', function (event) {
   }
 })
 
-function setImage (item) {
+function setImage (item, offlineItem, offlineImage) {
   var image = document.getElementById('image')
   var modalImage = document.getElementById('modal-image')
 
@@ -98,16 +138,34 @@ function setImage (item) {
   modalImage.alt = title
 
   if (image.complete) {
-    imageLoaded()
+    imageLoaded(item, offlineItem)
   } else {
-    image.addEventListener('load', imageLoaded)
-    image.addEventListener('error', showError)
+    image.addEventListener('load', function () {
+      imageLoaded(item, offlineItem)
+    })
+    image.addEventListener('error', function () {
+      imageError(item, offlineImage)
+    })
   }
 
   return item
 }
 
-function setMetadata (item) {
+function querySelectorAllHide (selectors) {
+  document.querySelectorAll(selectors)
+    .forEach(function (element) {
+      element.classList.add('hidden')
+    })
+}
+
+function querySelectorAllShow (selectors) {
+  document.querySelectorAll(selectors)
+    .forEach(function (element) {
+      element.classList.remove('hidden')
+    })
+}
+
+function setMetadata (item, offline) {
   var headerTitle = document.getElementById('header-title')
   var headerLink = document.getElementById('header-link')
   var surveyorLink = document.getElementById('surveyor-link')
@@ -147,22 +205,29 @@ function setMetadata (item) {
 
   if (item.data.date) {
     modalDate.innerHTML = item.data.date
-    modalDate.parentElement.classList.remove('hidden')
+    querySelectorAllShow('.modal-date-dl')
   } else {
     modalDate.innerHTML = ''
-    modalDate.parentElement.classList.add('hidden')
+    querySelectorAllHide('.modal-date-dl')
   }
 
   if (item.data.location) {
     modalLocation.innerHTML = item.data.location
-    modalLocation.parentElement.classList.remove('hidden')
+    querySelectorAllShow('.modal-location-dl')
   } else {
     modalLocation.innerHTML = ''
-    modalLocation.parentElement.classList.add('hidden')
+    querySelectorAllHide('.modal-location-dl')
   }
 
   modalDigitalCollectionsLink.href = digitalCollectionsHref
   modalSurveyorLink.href = surveyorHref
+
+  if (!offline) {
+    document.getElementsByTagName('footer')[0].classList.remove('hidden')
+    querySelectorAllShow('.hide-offline')
+  }
+
+  document.getElementsByTagName('header')[0].classList.remove('hidden')
 }
 
 function setLoading () {
@@ -195,8 +260,7 @@ function getItem (uuid) {
 
   callAPI(url)
     .then(setImage)
-    .then(setMetadata)
-    .catch(showError)
+    .catch(brickByBrickError)
 }
 
 getItem()

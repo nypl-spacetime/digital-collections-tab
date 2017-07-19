@@ -6,8 +6,6 @@
   <title>New Tab</title>
   <link rel='shortcut icon' type='image/png' href='images/nypl-48.png' />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script src="js/promise.min.js"></script>
-  <script src="js/fetch.js"></script>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -36,7 +34,10 @@
   <footer class="hidden">
     <div>
       <a id="surveyor-link">
-        <img alt="Do you know where this photo was taken?" id="question" src="images/question.svg" />
+        <div  id="question">
+          Know where this <br/>
+          photo was taken?
+        </div>
         <div id="nyc-animation">
           <img role="none" id="shadow" src="images/shadow.svg" />
           <img role="none" id="new-york-city" src="images/new-york-city.svg" />
@@ -49,38 +50,31 @@
     <article>
       <h2 id="modal-title"></h2>
       <div class="two-columns">
-        <table id="metadata">
-          <tr>
-            <td>
-              Collection:
-            </td>
-            <td>
-              <a id="modal-collection" href=""></a>
-            </td>
-          </tr>
-          <tr>
-            <td>Location:</td>
-            <td id="modal-location"></td>
-          </tr>
-          <tr>
-            <td>Date:</td>
-            <td id="modal-date"></td>
-          </tr>
-        </table>
+        <dl>
+          <dt>Collection:</dt>
+          <dd><a id="modal-collection" href=""></a></dd>
+          <dt class="modal-location-dl hidden">Location:</dt>
+          <dd class="modal-location-dl hidden"><span id="modal-location"></span></dd>
+          <dt class="modal-date-dl hidden">Date:</dt>
+          <dd class="modal-date-dl hidden"><span id="modal-date"></span></dd>
+        </dl>
         <div>
           <a href="" id="modal-digital-collections-link"><img id="modal-image" /></a>
         </div>
       </div>
-      <h3>NYPL Digital Collections Chrome Extension</h3>
-      <p>About!</p>
-      <h3>Surveyor</h3>
+      <h3>NYPL Digital Collections Tab</h3>
       <p>
-        About Surveyor
+        View a historic image from NYPL Digital Collections, every time you open a new tab.
       </p>
-      <p><strong>If you know the location where this photo was taken, <a href="" id="modal-surveyor-link">Surveyor</a>!</strong></p>
+      <div class="hide-offline hidden">
+        <h3>Help put New York City’s history on the map!</h3>
+        <p>
+          Know your NYC geography? Click the link at the bottom of the tab to view the image in The New York Public Library’s Surveyor tool. <a href="" id="modal-surveyor-link">Geotag the image and help put New York City’s history on the map</a>!
+        </p>
+      </div>
       <h3>Acknowledgements</h3>
       <p>
-        Surveyor and this Chrome Extension are part of the <a href="http://spacetime.nypl.org/">NYC Space/Time
+        NYPL Digital Collections Tab is part of the <a href="http://spacetime.nypl.org/">NYC Space/Time
       Directory</a>. The goal of this project is to&mdash;through a variety of resources&mdash;unlock the potential of historical maps and provide opportunities to explore urban history across space and time.
       </p>
       <p>
@@ -90,21 +84,42 @@
       <p>
         <img src="images/knight-foundation.png" alt="Knight Foundation Logo" style="width: 50%; opacity: 0.88;" />
       </p>
+      <h3>Uninstalling</h3>
+      <p>
+        To remove this extension from your browser, go to <a href="chrome://extensions/">Chrome’s Extensions settings page</a>.
+      </p>
       <h3>Accessibility</h3>
       <p>
-        <a href='https://www.nypl.org/'>The New York Public Library</a> strives to ensure that everyone has access to the full range of information, programs, and services that it offers. Our digital teams seek to conform to <a href='https://www.w3.org/TR/WCAG20/'>Web Content Accessibility
-      Guidelines (WCAG) 2.0</a> success criteria of at least Level AA. Even when surpassing these criteria, we realize that we might not meet the needs of all users. As new techniques emerge to address accessibility issues, we are committed to incorporating them into our development processes.
-      </p>
-      <p>
-        Some items in our collections present accessibility challenges. In such cases, we look at using metadata in different ways to improve accessibility. Additionally, as part of our efforts, we actively work on projects that enrich our metadata. As a result, we are increasingly able to provide better experiences with our collections for all users&mdash;regardless of their abilities.
-      </p>
-      <p>
-        If you encounter any accessibility shortfalls when using this Chrome Extension or would like to provide other feedback, please email <a href='mailto:spacetime@nypl.org'>spacetime@nypl.org</a> or TTY Ask NYPL at <a href='tel:2129300020'>212-930-0020</a>.
+        If you encounter any accessibility shortfalls when using this Chrome extension or would like to provide other feedback, please email <a href='mailto:spacetime@nypl.org'>spacetime@nypl.org</a> or TTY Ask NYPL at <a href='tel:2129300020'>212-930-0020</a>.
       </p>
       <p>
         For further information about assistive technologies and accommodations available for people with disabilities at the <a href='https://www.nypl.org/locations/'>research
       centers and branch libraries</a> of The New York Public Library, please visit <a href='http://nypl.org/accessibility'>nypl.org/accessibility</a> or email <a href='mailto:accessibility@nypl.org'>accessibility@nypl.org</a>.
       </p>
+      <h3>Terms &amp; Conditions</h3>
+      <p>
+        By installing the NYPL Digital Collections Tab Chrome extension (“Extension“), you acknowledge and agree to be bound by the following terms and conditions:
+      </p>
+      <ol>
+        <li>
+          The Extension is to be used by you only for your own personal, non-commercial use.
+        </li>
+        <li>
+          You agree not to copy, publish, or redistribute the Extension to any third party.
+        </li>
+        <li>
+          The trademarks (including but not limited to the Library Lions), logos, service marks and trade names (collectively the “Trademarks”) displayed on the Extension are registered and unregistered Trademarks of the New York Public Library (“NYPL”) and others and may not be used unless authorized by the Trademark owner.
+        </li>
+        <li>
+          Your use of the Extension does not grant you any rights to the digital images displayed using the Extension. For information about the copyright status of any digital image, please consult the NYPL Digital Collections.
+        </li>
+        <li>
+          Any data collected incidental to your download, installation, or use of the Extension shall be governed by the NYPL website <a href="https://www.nypl.org/help/about-nypl/legal-notices/website-terms-and-conditions">terms and conditions</a> and <a href="https://www.nypl.org/help/about-nypl/legal-notices/privacy-policy">privacy policy</a>.
+        </li>
+        <li>
+          The Extension is provided “as is” and on an “as available” basis. NYPL does not guarantee the availability or performance of the Extension and reserves the right to update or remove the Extension at any time and at its sole discretion.
+        </li>
+      </ol>
       <div>
         <button id="back-button">Go back to photo!</button>
       </div>
