@@ -111,7 +111,10 @@ window.addEventListener('keydown', function (event) {
   }
 })
 
-document.getElementById('back-button').addEventListener('click', hideModal)
+document.querySelectorAll('.back-button')
+  .forEach(function (element) {
+    element.addEventListener('click', hideModal)
+  })
 document.getElementById('modal').addEventListener('click', function (event) {
   if (event.target === this) {
     hideModal()

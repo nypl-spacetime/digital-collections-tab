@@ -276,7 +276,7 @@ footer a:visited {
   width: 100%;
 }
 
-#back-button {
+.back-button {
   margin: 10px auto;
   display: block;
 }
