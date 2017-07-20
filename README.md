@@ -15,9 +15,13 @@ Know your NYC geography? Click the link at the bottom of the tab to view the ima
 
 From Chrome Web Store (__coming soon!__), or clone this repository, go to [chrome://extensions](chrome://extensions), enable _Developer mode_ and click [Load unpacked extension…](https://developer.chrome.com/extensions/getstarted#unpacked).
 
+To remove Digital Collections Tab from Google Chrome, go to <a href="chrome://extensions/">Chrome’s Extensions settings page</a> and click _Remove from Chrome…_
+
 ### Mozilla Firefox
 
 [Install the New Tab Override Add-on](https://addons.mozilla.org/en-US/firefox/addon/new-tab-override/) for Firefox, and set the add-on to open the following URL in each new tab: http://spacetime.nypl.org/digital-collections-tab.
+
+To reset your browser’s new tab settings, set the URL to `about:newtab`, or remove the New Tab Override add-on altogether.
 
 ### Other browsers
 
