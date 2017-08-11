@@ -6,7 +6,6 @@
   "homepage_url": "http://spacetime.nypl.org/",
   "version": "1.0.0",
   "incognito": "split",
-  "default_locale": "en",
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
