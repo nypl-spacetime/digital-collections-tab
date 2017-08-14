@@ -4,7 +4,7 @@
   "description": "View a historic image from the New York Public Library’s Digital Collections, every time you open a new tab.",
   "short_name": "NYPL Digital Collections Tab",
   "homepage_url": "http://spacetime.nypl.org/",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "incognito": "split",
   "chrome_url_overrides": {
     "newtab": "index.html"
@@ -18,7 +18,8 @@
   ],
   "content_security_policy": "script-src 'self' https://wwww.nypl.org/*; object-src 'self'",
   "permissions": [
-    "<all_urls>",
-    "tabs"
+    "http://spacetime.nypl.org/",
+    "https://*.nypl.org/",
+    "https://brick-by-brick.herokuapp.com/"
   ]
 }

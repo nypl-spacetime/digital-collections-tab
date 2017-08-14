@@ -194,8 +194,8 @@ function setMetadata (item, offline) {
     }
   }
 
-  var digitalCollectionsHref = 'http://digitalcollections.nypl.org/items/' + item.id
-  var collectionHref = 'http://digitalcollections.nypl.org/items/' + item.collection.id
+  var digitalCollectionsHref = 'https://digitalcollections.nypl.org/items/' + item.id
+  var collectionHref = 'https://digitalcollections.nypl.org/items/' + item.collection.id
   var surveyorHref = APP_URL + item.id
 
   headerTitle.innerHTML = title
