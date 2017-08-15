@@ -4,7 +4,7 @@
   "description": "View a historic image from the New York Public Library’s Digital Collections, every time you open a new tab.",
   "short_name": "NYPL Digital Collections Tab",
   "homepage_url": "http://spacetime.nypl.org/",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "incognito": "split",
   "chrome_url_overrides": {
     "newtab": "index.html"

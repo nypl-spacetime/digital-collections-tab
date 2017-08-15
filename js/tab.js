@@ -9,6 +9,16 @@ var APP_URL = 'http://spacetime.nypl.org/surveyor/#/'
 var ORGANIZATION = 'nypl'
 var MAX_TITLE_LENGTH = 150
 
+// Polyfill for NodeList.forEach - Safari needs this...
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = function (callback, thisArg) {
+    thisArg = thisArg || window
+    for (var i = 0; i < this.length; i++) {
+      callback.call(thisArg, this[i], i, this)
+    }
+  }
+}
+
 function checkStatus (response) {
   if (response.status >= 200 && response.status < 300) {
     return response
